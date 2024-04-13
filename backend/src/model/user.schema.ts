@@ -1,22 +1,30 @@
-import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
-export type UserDocument = User & Document;
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Document } from 'mongoose';
 
-// Define gender enum
-enum Gender {
+export enum Gender {
   MALE = 'male',
   FEMALE = 'female',
   OTHER = 'other'
 }
 
+export type UserDocument = User & Document;
+
 @Schema()
 export class User {
   @Prop({ required: true })
   name: string;
-  @Prop({ required: true })
+
+  @Prop({ type: String, enum: Object.values(Gender), required: true })
   gender: Gender;
-  @Prop({ required: true })
-  hours: number;
-  @Prop({ required: true })
-  date: Date;
+
+  @Prop({
+    type: [{
+      value: { type: Number },
+      date: { type: Date, default: Date.now }
+    }],
+    default: []
+  })
+  hours: { value: number; date: Date }[];
 }
-export const UserSchema = SchemaFactory.createForClass(User)
+
+export const UserSchema = SchemaFactory.createForClass(User).index({ name: 1, gender: 1 }, { unique: true });
