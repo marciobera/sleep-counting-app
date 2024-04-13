@@ -1,4 +1,25 @@
-import { Controller } from '@nestjs/common';
+import { Body, Controller, Get, Param, ParseIntPipe, Post } from '@nestjs/common';
+import { UsersService } from './users.service';
+import { UserOutDto } from './users.dto';
+import { User } from 'src/model/user.schema';
 
-@Controller('users')
-export class UsersController {}
+@Controller('/api/v1/users')
+export class UsersController {
+    constructor(private readonly usersService: UsersService) { }
+
+    @Get()
+    async findAll(): Promise<UserOutDto[]> {
+        return this.usersService.findAll();
+    }
+
+    @Get('/:userId')
+    async getOne(@Param('userId') userId: string): Promise<User> {
+        console.log({ userId });
+        return this.usersService.findOne(userId);
+    }
+
+    @Post()
+    async createUser(@Body() user: User): Promise<User> {
+        return this.usersService.createUser(user);
+    }
+}

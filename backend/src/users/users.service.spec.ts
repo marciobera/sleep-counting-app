@@ -12,7 +12,9 @@ describe('UsersService', () => {
     service = module.get<UsersService>(UsersService);
   });
 
-  it('should be defined', () => {
-    expect(service).toBeDefined();
+  it('can get all users', () => {
+    service.findAll().then((users) => {
+      expect(users).toBeDefined();
+    });
   });
 });
