@@ -26,7 +26,7 @@ export class AllExceptionsFilter implements ExceptionFilter {
             messages = [exception.message ?? exception.getResponse().toString()];
             statusCode = exception.getStatus();
         } else if (exception instanceof MongooseError) {
-            messages = exception.message.split(", ");
+            messages = exception.message.replace("User validation failed: ", "").split(", ");
             if (exception instanceof Error.ValidationError) {
                 console.log(exception.addError)
                 statusCode = HttpStatus.BAD_REQUEST;
