@@ -14,7 +14,6 @@ export class UsersController {
 
     @Get('/:userId')
     async getOne(@Param('userId') userId: string): Promise<User> {
-        console.log({ userId });
         return this.usersService.findOne(userId);
     }
 
