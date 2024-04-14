@@ -1,4 +1,4 @@
-import { Gender, User } from "../model/user.schema";
+import { Gender, User } from "../users/user.schema";
 import { UserOutDto } from "../users/users.dto";
 
 const mockUserId = '66197e41fdd10168e968c1b6';

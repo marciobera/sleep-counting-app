@@ -1,4 +1,4 @@
-import { Gender } from "src/model/user.schema";
+import { Gender } from "src/users/user.schema";
 
 export interface UserOutDto {
     id: string;

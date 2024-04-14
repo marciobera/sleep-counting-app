@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { UsersController } from './users.controller';
 import { UsersService } from './users.service';
-import { Gender, User } from '../model/user.schema';
+import { Gender, User } from './user.schema';
 import { UserOutDto } from './users.dto';
 import { getModelToken } from '@nestjs/mongoose';
 
