@@ -1,7 +1,7 @@
 import { Body, Controller, Get, Param, ParseIntPipe, Post } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { UserOutDto } from './users.dto';
-import { User } from 'src/model/user.schema';
+import { User } from '../model/user.schema';
 
 @Controller('/api/v1/users')
 export class UsersController {
