@@ -24,7 +24,7 @@ export class User {
     }],
     default: []
   })
-  hours: { value: number; date: Date }[];
+  hours: { value: number; date?: Date }[];
 }
 
 export const UserSchema = SchemaFactory.createForClass(User).index({ name: 1, gender: 1 }, { unique: true });

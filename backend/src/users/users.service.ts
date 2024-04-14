@@ -43,8 +43,7 @@ export class UsersService {
     }
 
     async createUser(user: User): Promise<User> {
-        const existingUser = await this.userModel.findOne({ name: user.name, gender: user.gender });
-
+        const existingUser = await this.userModel.findOne({ name: user.name, gender: user.gender }).exec();
         if (existingUser) {
             existingUser.name = user.name;
             existingUser.gender = user.gender;
